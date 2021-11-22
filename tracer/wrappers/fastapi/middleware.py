@@ -10,7 +10,7 @@ class FastapiMiddleware(object):
             return await self.app(scope, receive, send)
 
         try:
-            self._wrapper.before_request(scope, None)
+            self._wrapper.before_request(scope)
         except Exception as e:
             print("Error during the before part of fastapi: {}".format(e))
 
