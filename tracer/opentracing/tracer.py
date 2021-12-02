@@ -15,7 +15,7 @@ class FastapiTracer(opentracing.Tracer):
         return FastapiTracer() if FastapiTracer.__instance is None else FastapiTracer.__instance
 
 
-    def __init__(self, scope_manager=None):
+    def __init__(self):
         scope_manager = ContextVarsScopeManager()
         super(FastapiTracer, self).__init__(scope_manager)
         FastapiTracer.__instance = self
@@ -58,7 +58,7 @@ class FastapiTracer(opentracing.Tracer):
 
         _span_id = span_id or str(uuid.uuid4())
 
-        _context = FastapiSpanContext(span_id=_span_id,)
+        _context = FastapiSpanContext(span_id=_span_id)
         _span = FastapiSpan(self,
                             operation_name=operation_name,
                             context=_context,
